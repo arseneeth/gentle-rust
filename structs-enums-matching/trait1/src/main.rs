@@ -21,5 +21,4 @@ fn main() {
 	let s2 = maybe_pi.show();
 	println!("show {}", s1);
 	println!("show {}", s2);
-
 }
