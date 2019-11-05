@@ -13,6 +13,10 @@ impl Person {
 		}
 	}
 
+	fn copy(&self) -> Self {
+		Self::new(&self.first_name, &self.last_name)
+	}
+
 	fn set_first_name(&mut self, name: &str) {
 		self.first_name = name.to_string();
 	}
@@ -23,12 +27,15 @@ impl Person {
 }
 
 fn main() {
-    let mut p = Person::new("John", "Smith");
-    println!("{:?}", p);
+    let person = Person::new("John", "Smith");
 
-    p.set_first_name("Jane");
+    println!("{:?}", person);
 
-    println!("{:?}", p);
+    let mut copy = Person::copy(&person); 
 
-    println!("{:?}", p.to_tuple());
+    Person::set_first_name(&mut copy, "Jane");
+
+    println!("{:?}", copy);
+
+    println!("{:?}", copy.to_tuple());
 }
