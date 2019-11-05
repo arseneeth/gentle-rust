@@ -31,11 +31,12 @@ fn main() {
 
     println!("{:?}", person);
 
-    let mut copy = Person::copy(&person); 
+    let mut copy = Person::copy(&copy); 
 
-    Person::set_first_name(&mut copy, "Jane");
+    copy.set_first_name("Jane");
 
     println!("{:?}", copy);
 
     println!("{:?}", copy.to_tuple());
+    // copy has moved
 }
