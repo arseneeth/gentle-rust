@@ -1,4 +1,5 @@
-#[derive(Debug)]
+use std::fmt;
+
 struct Person {
 	first_name: String,
 	last_name: String
@@ -17,6 +18,10 @@ impl Person {
 		Self::new(&self.first_name, &self.last_name)
 	}
 
+	fn full_name(&self) -> String{
+		format!("{} {}", self.first_name, self.last_name)
+	}
+
 	fn set_first_name(&mut self, name: &str) {
 		self.first_name = name.to_string();
 	}
@@ -26,12 +31,18 @@ impl Person {
 	}
 }
 
+impl fmt::Debug for Person {
+	fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+		write!(f, "{}", self.full_name())
+	}
+}
+
 fn main() {
     let person = Person::new("John", "Smith");
 
     println!("{:?}", person);
 
-    let mut copy = Person::copy(&copy); 
+    let mut copy = person.copy(); 
 
     copy.set_first_name("Jane");
 
