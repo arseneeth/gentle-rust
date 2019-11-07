@@ -40,7 +40,6 @@ fn main() {
 
 	eat_and_dump(n);
 	println!("s? {:?}", s.to_str());
-	// eat_and_dump(s);
 	dump(&b);
     // println!("n {:?} s {:?} b {:?}", n, s, b);
 }
