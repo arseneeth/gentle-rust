@@ -23,12 +23,41 @@ impl Node {
     fn set_right(&mut self, node: Node) {
         self.right = Self::boxer(node);
     }
+
+    fn insert(&mut self, data: &str) {
+    	if data < &self.payload {
+    		match self.left{
+    			Some(ref mut n) => n.insert(data),
+    			None => self.set_left(Self::new(data)),
+    			}
+    	} else {
+    		match self.left{
+    			Some(ref mut n) => n.insert(data),
+    			None => self.set_right(Self::new(data)),
+    		}
+    	}
+    }
+
+    fn visit(&self) {
+    	if let Some(ref left) = self.left{
+    		left.visit();
+    	}
+    	println!("'{}'", self.payload);
+    	if let Some(ref right) = self.right {
+    		right.visit();
+    	}
+    }
+
+
 }
+
 
 fn main() {
     let mut root = Node::new("root");
-    root.set_left(Node::new("left"));
-    root.set_right(Node::new("right"));
+ 	root.insert("one");
+ 	root.insert("two");
+ 	root.insert("four");
+ 	root.visit();
 
     println!("arr {:#?}", root);
 }
